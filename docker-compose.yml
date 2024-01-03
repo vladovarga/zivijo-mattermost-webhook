@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  zivijo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./birthdays.csv:/app/birthdays.csv
+    environment:
+      # Mattermost generated incoming webhook endpoint URL
+      - ZIVIJO_WEBHOOK_URL=https://your-mattermost-server.com/hooks/xxx-generatedkey-xxx
+      # channel to post in
+      - ZIVIJO_CHANNEL=town-square
+      # path to CSV file with birthdays
+      - ZIVIJO_BIRTHDAYS_CSV_PATH=/app/birthdays.csv
+      # comma separated list of emoji icons to be used in the message
+      - ZIVIJO_ICON_EMOJI_CSV=":champagne:,:tada:,:clinking_glasses:,:confetti_ball:,:gift:,:birthday:"
