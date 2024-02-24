@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 """Testing main module."""
 
-from typing import Dict, List
 import datetime
 from unittest.mock import patch
 
 from webhook import post_message
 
 # constants for further testing
-CSV_HEADER = "email,user_id,iso-birth-date,iso-name-date"
 
 USER_1 = {
     "email": "user_1@email.com",
@@ -27,21 +25,6 @@ USER_2 = {
     "iso-name-date": "2022-02-02",
     "name_date": datetime.datetime(2022, 2, 2)
 }
-
-
-def compose_csv_content(csv_header: str, users: List[Dict]) -> str:
-    """Compose the csv content from the users data."""
-    csv_content = "{csv_header}\n".format(csv_header=csv_header)
-
-    for user in users:
-        csv_content += "{email},{user_id},{iso_birth_date},{iso_name_date}\n".format(
-            email=user["email"],
-            user_id=user.get("user_id"),
-            iso_birth_date=user["iso-birth-date"],
-            iso_name_date=user["iso-name-date"]
-        )
-
-    return csv_content
 
 
 def test_post_message() -> None:
